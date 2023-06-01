@@ -1,0 +1,111 @@
+<div
+  class="
+    auth-wrapper
+    d-flex
+    no-block
+    justify-content-center
+    align-items-center
+    bg-dark
+  "
+>
+  <div class="auth-box bg-dark border-top border-secondary">
+    <div id="loginform1">
+      <div class="text-center p-4 p-t-20 p-b-20">
+        <span class="db my-5"
+          ><img src="assets/themes/images/logo1.png" alt="logo"
+        /></span>
+      </div>
+      <!-- Form -->
+      <form
+        class="form-horizontal m-t-20"
+        [formGroup]="loginForm"
+        (ngSubmit)="submitForm()"
+      >
+        <div class="row p-b-30">
+          <div class="col-12">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span
+                  class="input-group-text bg-success text-white"
+                  id="basic-addon1"
+                  ><i class="ti-user"></i
+                ></span>
+              </div>
+              <input
+                formControlName="username"
+                type="text"
+                [ngClass]="{
+                  'form-control form-control-lg': true,
+                  'parsley-error parsley-error': us.errorField(
+                    loginForm,
+                    'username'
+                  )
+                }"
+                placeholder="Username"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                required=""
+              />
+            </div>
+            <div>
+              <ul class="parsley-errors-list filled" id="parsley-id-30">
+                <ng-container
+                  *ngIf="us.errorField(loginForm, 'username')"
+                  class="parsley-required"
+                >
+                  <li *ngIf="us.errorText(loginForm, 'username', 'required')">
+                    Name obligatoire
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span
+                  class="input-group-text bg-warning text-white"
+                  id="basic-addon2"
+                  ><i class="ti-pencil"></i
+                ></span>
+              </div>
+              <input
+                formControlName="password"
+                type="password"
+                class="form-control form-control-lg"
+                placeholder="Password"
+                aria-label="Password"
+                aria-describedby="basic-addon1"
+                required=""
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row border-top border-secondary">
+          <div class="col-12">
+            <div class="form-group">
+              <div class="p-t-20 mt-2">
+                <button
+                  [routerLink]="['/app', 'auth', 'reset-password']"
+                  class="btn btn-info"
+                  id="to-recover"
+                  type="button"
+                >
+                  <i class="fa fa-lock m-r-5"></i> Lost password?
+                </button>
+                <button class="btn btn-success float-right" (click)="login()">
+                  Login
+                </button>
+              </div>
+              <div class="mt-2 text-center">
+                <a
+                  [routerLink]="['/app/auth/register']"
+                  routerLinkActive="router-link-active"
+                  >Vous n'avez pas du compte</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
