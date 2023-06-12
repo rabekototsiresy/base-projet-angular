@@ -8,6 +8,13 @@
     bg-dark
   "
 >
+<div class="row">
+
+<div class="row w-100 ">
+  <div class="col d-flex justify-content-center">
+    <app-lang></app-lang>
+  </div>
+</div>
   <div class="auth-box bg-dark border-top border-secondary">
     <div id="loginform1">
       <div class="text-center p-4 p-t-20 p-b-20">
@@ -89,17 +96,17 @@
                   id="to-recover"
                   type="button"
                 >
-                  <i class="fa fa-lock m-r-5"></i> Lost password?
+                  <i class="fa fa-lock m-r-5"></i> {{ __('auth.text_forgot_pass')}}
                 </button>
-                <button class="btn btn-success float-right" (click)="login()">
-                  Login
+                <button class="btn btn-success float-right" type="submit">
+                  {{ __('auth.text_login')}}
                 </button>
               </div>
               <div class="mt-2 text-center">
                 <a
                   [routerLink]="['/app/auth/register']"
                   routerLinkActive="router-link-active"
-                  >Vous n'avez pas du compte</a
+                  >{{ __('auth.text_create_account')}}</a
                 >
               </div>
             </div>
@@ -108,4 +115,5 @@
       </form>
     </div>
   </div>
+</div>
 </div>

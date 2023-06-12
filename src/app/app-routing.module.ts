@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WrapperContentComponent } from './shared/modules/layouts/wrapper-content/wrapper-content.component';
-import { WrapperComponent } from './shared/modules/layouts/wrapper/wrapper.component';
+import { WrapperContentComponent } from './shared/layouts/wrapper-content/wrapper-content.component';
+import { WrapperComponent } from './shared/layouts/wrapper/wrapper.component';
+
 import { NotFound404Component } from './shared/pages/not-found404/not-found404.component';
 
 
@@ -33,7 +34,8 @@ const routes: Routes = [
       pathMatch: 'full'
   },
   {
-    path: '**', pathMatch: 'full',
+    path: '**',
+    pathMatch: 'full',
     component: NotFound404Component
   }
 

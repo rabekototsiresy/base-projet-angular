@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { BASE_URL, environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -34,7 +34,7 @@ export class HttpService {
       withCredentials?: boolean;
     }
   ): Observable<any> {
-    return this.http.get(`${environment.api.baseUrl}${url}`, params);
+    return this.http.get(`${BASE_URL}${url}`, params);
   }
 
   post(
@@ -57,7 +57,7 @@ export class HttpService {
       withCredentials?: boolean;
     }
   ): Observable<any> {
-    return this.http.post(`${environment.api.baseUrl}${url}`, body, options);
+    return this.http.post(`${BASE_URL}${url}`, body, options);
   }
 
   patch(
@@ -80,7 +80,7 @@ export class HttpService {
       withCredentials?: boolean;
     }
   ): Observable<any> {
-    return this.http.patch(`${environment.api.baseUrl}${url}`, body, options);
+    return this.http.patch(`${BASE_URL}${url}`, body, options);
   }
 
   put(
@@ -103,7 +103,7 @@ export class HttpService {
       withCredentials?: boolean;
     }
   ): Observable<any> {
-    return this.http.put(`${environment.api.baseUrl}${url}`, body, options);
+    return this.http.put(`${BASE_URL}${url}`, body, options);
   }
 
   delete(
@@ -125,6 +125,6 @@ export class HttpService {
       withCredentials?: boolean;
     }
   ): Observable<any> {
-    return this.http.delete(`${environment.api.baseUrl}${url}`, options);
+    return this.http.delete(`${BASE_URL}${url}`, options);
   }
 }

@@ -1,0 +1,28 @@
+<div ngbDropdown class="d-inline-block">
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    id="dropdownBasic1"
+    ngbDropdownToggle
+  >
+
+  <span>
+    <img [src]="currentLang.flag" alt="" srcset="" width="20">
+  </span>
+  <span>
+    {{currentLang.name}}
+  </span>
+    <!-- {{ __("lang.text_lang") }} -->
+  </button>
+  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+
+    <button role="button" class="cursor-pointer" ngbDropdownItem *ngFor="let lang of langList" (click)="getSeletedLang(lang)">
+      <span>
+        <img [src]="lang.flag" alt="" srcset="" width="20">
+      </span>
+      <span>
+        {{lang.name}}
+      </span>
+    </button>
+  </div>
+</div>

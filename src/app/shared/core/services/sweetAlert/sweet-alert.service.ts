@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import Swal, { SweetAlertIcon, SweetAlertResult } from 'sweetalert2';
+import { CANCEL_BUTTON_COLOR, CONFIRM_BUTTON_COLOR } from '../../constants/color_const';
 import { ESweetAlertIcon } from '../../enums/ESweetAlert';
-import { CANCEL_BUTTON_COLOR, CONFIRM_BUTTON_COLOR } from '../../../constants';
 @Injectable({
   providedIn: 'root'
 })

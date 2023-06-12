@@ -13,6 +13,12 @@ export class LocalStorageService {
   set(key: string, value: string): void {
     localStorage.setItem(key, value);
   }
+  remove(key: string): void {
+    localStorage.removeItem(key);
+  }
+  clearAll(): void {
+    localStorage.clear();
+  }
 
   getObject(key: string): object | null {
     try {

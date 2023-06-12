@@ -1,0 +1,12 @@
+{
+  "lang": {
+    "text_lang": "language",
+    "text_en": "English",
+    "text_fr": "French"
+  },
+  "auth": {
+    "text_forgot_pass": "Forgot your password",
+    "text_login": "Login",
+    "text_create_account": "Create an account"
+  }
+}

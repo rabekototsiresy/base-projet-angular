@@ -1,8 +1,7 @@
-
+export const BASE_URL = 'http://localhost:3000/api/v1/auth';
 export const environment = {
   production: false,
-  api: {
-    baseUrl: 'https://gateway-cem.numherit-dev.com'
-  },
-  host: 'http://localhost:2021'
+  login: '/login',
+  register: '/register',
+  refreshToken: '/refresh-token',
 };

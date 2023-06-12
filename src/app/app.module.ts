@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { GlobalErrorHandler } from './shared/core/services/error/global-error-handler';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpConfigInterceptor } from './shared/core/interceptors/http-config.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,6 @@ import { HttpConfigInterceptor } from './shared/core/interceptors/http-config.in
     NgbModule,
     RouterModule,
     AppRoutingModule,
-
   ],
   providers: [
     {

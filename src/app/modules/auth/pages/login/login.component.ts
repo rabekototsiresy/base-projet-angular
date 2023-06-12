@@ -2,16 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import $ from 'jquery';
+import { Translatable } from 'src/app/shared/core/constants/translatable_const';
+import { IApiResponse } from 'src/app/shared/core/interfaces/IApiResponse';
 import { HttpService } from 'src/app/shared/core/services/http/http.service';
 import { NotifierService } from 'src/app/shared/core/services/notifier/notifier.service';
 import { UtilService } from 'src/app/shared/core/services/utils/util.service';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
-
+export class LoginComponent extends Translatable implements OnInit {
   loginForm: FormGroup | any;
 
   constructor(
@@ -19,37 +22,39 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public us: UtilService,
     private _http: HttpService
-  )
-     { }
-  user = {
-    name: 'koto'
+  ) {
+    super();
   }
+  user = {
+    name: 'koto',
+  };
   ngOnInit() {
-
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
-  login() {
-    this._http.get('/auth/me').subscribe(
-      (response) => {
-        console.log(response,'coucou')
-      },
-      (e) => console.log('errorr')
-    )
-    this.router.navigate(['app','v1','dashboard']);
-  }
+
   submitForm() {
     if (this.loginForm.invalid) {
       return;
     }
-
-    // Form is valid, perform login logic here
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
-
-    // Rest of the login logic
+    this._http
+      .post( environment.login , { username, password })
+      .subscribe(
+        ({ data }: IApiResponse) => {
+          console.log(data)
+          localStorage.setItem('accessToken', data.accessToken);
+          localStorage.setItem('refreshToken', data.refreshToken);
+          this.router.navigateByUrl('/app/v1/dashboard')
+          // Redirect to protected route or perform other actions upon successful login
+        },
+        (error) => {
+          console.log(error);
+          // Handle error cases
+        }
+      );
   }
-
 }
