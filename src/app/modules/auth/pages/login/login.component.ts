@@ -8,6 +8,7 @@ import { HttpService } from 'src/app/shared/core/services/http/http.service';
 import { NotifierService } from 'src/app/shared/core/services/notifier/notifier.service';
 import { UtilService } from 'src/app/shared/core/services/utils/util.service';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent extends Translatable implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     public us: UtilService,
-    private _http: HttpService
+    private _http: HttpService,
+    private _authService: AuthService
   ) {
     super();
   }
@@ -41,20 +43,18 @@ export class LoginComponent extends Translatable implements OnInit {
     }
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
-    this._http
-      .post( environment.login , { username, password })
-      .subscribe(
-        ({ data }: IApiResponse) => {
-          console.log(data)
-          localStorage.setItem('accessToken', data.accessToken);
-          localStorage.setItem('refreshToken', data.refreshToken);
-          this.router.navigateByUrl('/app/v1/dashboard')
-          // Redirect to protected route or perform other actions upon successful login
-        },
-        (error) => {
-          console.log(error);
-          // Handle error cases
-        }
-      );
+    this._authService.login(username, password).subscribe(
+      ({ data }) => {
+        console.log(data);
+        localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        this.router.navigateByUrl('/app/v1/dashboard');
+        // Redirect to protected route or perform other actions upon successful login
+      },
+      (error) => {
+        console.log(error);
+        // Handle error cases
+      }
+    );
   }
 }

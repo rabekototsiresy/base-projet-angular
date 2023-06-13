@@ -17,7 +17,7 @@ export class ButtonComponent implements OnInit {
 
   }
   emitEvent() {
-    this.click.emit('Custom event emitted from child component');
+    this.click.emit();
   }
 
 }

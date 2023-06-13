@@ -9,6 +9,7 @@ import { initLayout } from '../../../../assets/libraries/js/layout';
 import { HttpService } from '../../../shared/core/services/http/http.service';
 import { environment } from 'src/environments/environment';
 import { IApiResponse } from 'src/app/shared/core/interfaces/IApiResponse';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -19,7 +20,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private notifier: NotifierService,
     private _sweet: SweetAlertService,
-    private _http: HttpService
+    private _http: HttpService,
+    private h: HttpClient
   ) {
     initLayout();
   }
@@ -39,6 +41,7 @@ export class DashboardComponent implements OnInit {
     .get( environment.register)
     .subscribe(
       (response: IApiResponse) => {
+        this.notifier.info('SERVEUR','OK OK OK')
        console.log('response',response)
         // Redirect to protected route or perform other actions upon successful login
       },
@@ -47,6 +50,19 @@ export class DashboardComponent implements OnInit {
         // Handle error cases
       }
     );
+  }
+
+
+
+
+  getUser() {
+    this.h.get("https://jsonplaceholder.typicode.com/users/fdsjfd/fdsfd").subscribe((res) => {
+      console.log(res,'response')
+    })
+  }
+
+  TEST() {
+    console.log("heninstoa")
   }
 }
 

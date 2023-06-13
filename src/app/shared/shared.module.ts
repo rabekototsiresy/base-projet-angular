@@ -38,7 +38,6 @@ import { BreadcumbComponent } from './components/breadcumb/breadcumb.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
   ],
   exports: [
     NotFound404Component,
@@ -47,7 +46,7 @@ import { BreadcumbComponent } from './components/breadcumb/breadcumb.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+
     LangComponent,
     HeaderComponent,
     SidebarComponent,

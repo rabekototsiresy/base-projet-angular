@@ -7,8 +7,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminModule } from './modules/admin/admin.module';
 import { RouterModule } from '@angular/router';
 import { GlobalErrorHandler } from './shared/core/services/error/global-error-handler';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpConfigInterceptor } from './shared/core/interceptors/http-config.interceptor';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,17 +22,22 @@ import { HttpConfigInterceptor } from './shared/core/interceptors/http-config.in
     NgbModule,
     RouterModule,
     AppRoutingModule,
+    SharedModule,
+    HttpClientModule
   ],
   providers: [
     {
       provide: ErrorHandler,
-      useClass: GlobalErrorHandler
+      useClass: GlobalErrorHandler,
+
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpConfigInterceptor,
       multi: true
-    }
+    },
+
+
   ],
   bootstrap: [AppComponent]
 })

@@ -8,10 +8,11 @@ import { ESweetAlertIcon } from '../../enums/ESweetAlert';
 export class SweetAlertService {
 
   constructor() { }
-  swal(title: string,text: string,icon: ESweetAlertIcon) {
+  swal(title: string,text: string,icon?: ESweetAlertIcon) {
     Swal.fire({
       title,
       text,
+      icon,
       confirmButtonColor: CONFIRM_BUTTON_COLOR
     })
   }
